@@ -2,12 +2,11 @@
 #define PZEM004TV1_h
 
 #include "Arduino.h"
-#include <SoftwareSerial.h>
+#include <HardwareSerial.h>
 
 class PZEM004TV1 {
 public:
-    PZEM004TV1(uint8_t receivePin, uint8_t transmitPin);
-
+    PZEM004TV1(HardwareSerial* port, uint8_t rxpin, uint8_t txpin);
 
     float readVoltage();
     float readCurrent();
@@ -22,7 +21,7 @@ public:
 
 
 private:
-    SoftwareSerial *_serial;
+    HardwareSerial* _serial;
 
     void sendCommand(uint8_t command[], int length);
     uint16_t calculateCRC(uint8_t *data, int length);

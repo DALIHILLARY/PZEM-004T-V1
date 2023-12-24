@@ -2,10 +2,10 @@
 #include "PZEM004TV1.h"
 
 
-PZEM004TV1::PZEM004TV1(uint8_t receivePin, uint8_t transmitPin)
+PZEM004TV1::PZEM004TV1(HardwareSerial* port, uint8_t receivePin, uint8_t transmitPin)
 {
-    _serial = new SoftwareSerial(receivePin, transmitPin);
-    _serial->begin(9600);
+    port->begin(9600, SERIAL_8N1, receivePin, transmitPin);
+    _serial = port;
 }
 
 PZEM004TV1::~PZEM004TV1()
